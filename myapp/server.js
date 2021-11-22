@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json);
 app.use(express.static("express"));
 
-app.get/*use*/('/', function(req, res){
+app.use('/', function(req, res){
     res.sendFile(path.join(_dirname+'/express/index.html'));
     //__dirname: it will resolve to your project folder
 })
