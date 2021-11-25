@@ -94,9 +94,9 @@ db.on('error', console.error.bind(console, 'Mongo connection error:'));
 */
 
 // Using Youtube video
-const express = require('express');
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
+var express = require('express');
+var bodyParser = require("body-parser");
+var mongoose = require("mongoose");
 const app = express();
 
 app.use(express.static("public"));
@@ -108,16 +108,16 @@ app.use(bodyParser.urlencoded({
 mongoose.connect('mongodb+srv://Bukola:12345@cluster0.j8uhq.mongodb.net/local_library?retryWrites=true&w=majority',{useNewUrlParser: true , useUnifiedTopology: true});
 //'mongodb://localhost:27017/mydb'
 
-const db = mongoose.connection;
+var db = mongoose.connection;
 db.on('error',()=> console.log('Error in connecting to Database'));
 db.once('open', () => console.log('Connected to Database'))
 
-app.post("/signup",(req,res) => {
+app.post("/sign_up",(req,res) => {
     var firstName = req.body.firstName;
     var email = req.body.email;
 
     var data = {
-        "firstName" : firstName,
+        "first-name" : firstName,
         "email": email
     }
     
