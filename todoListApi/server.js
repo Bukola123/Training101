@@ -7,7 +7,8 @@ bodyParser = require('body-parser');
 
 // Connecting to Mongodb
 mongoose.Promise = global.Promise;
-mongoose.connect = ('mongodb://localhost/Tododb');
+mongoose.connect = ('mongodb://localhost:27017/mydb')
+//('mongodb://localhost/Tododb');
 
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
@@ -16,6 +17,9 @@ app.use(bodyParser.json());
 var routes = require('./api/routes/todoListRoutes.js')
 routes(app); //Registring app
 
+app.use(function(req, res) {
+    res.status(404).send({url: req.originalUrl + ' not found'})
+  });
 
 
 app.listen(port);
