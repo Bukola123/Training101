@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 Task = mongoose.model('Task');  
 
 
-exports.list_all_tasks = function(req,res){
+exports.list_all_tasks = function(async)(req,res){
     Task.find({}, function(err,task){
         if(err)
             res.send(err);
@@ -15,7 +15,7 @@ exports.list_all_tasks = function(req,res){
      });
 };
 
-exports.create_a_task = function (req,res){
+exports.create_a_task = function(async) (req,res){
     var new_task = new Task(req.body);
     new_task.save(function(err,task){
         if(err)
@@ -25,7 +25,7 @@ exports.create_a_task = function (req,res){
     });
 };
 
-exports.read_a_task = function(req,res){
+exports.read_a_task = function (async)(req,res){
     Task.FindById(req.params.taskId, function(err, task){   
         if(err)
             res.send(err);
@@ -33,7 +33,7 @@ exports.read_a_task = function(req,res){
     })
 };
 
-exports.update_a_task = function(req,res){
+exports.update_a_task = function(async)(req,res){
     Task.FindOneAndUpdate({
         _id: req.params.taskId}, req.body, {new:true}, function(err,task){
         if(err)
@@ -42,7 +42,7 @@ exports.update_a_task = function(req,res){
     });
 };
 
-exports.delete_a_task = function (req,res){
+exports.delete_a_task = function (async)(req,res){
     Task.remove({
         _id: req.params.taskId
     },function (err,task){
